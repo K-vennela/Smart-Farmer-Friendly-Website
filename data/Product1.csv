@@ -1,0 +1,18 @@
+FarmerId,ProductId,ProductName,Price,RemainingQuantity,SoldQuantity,ExpiryDate,Description,Rating
+1,1,Tomato,30,10,0,15-11-2019,"Ripened,Hybrid",3.5
+2,2,Tomato,36,15,10,25-12-2019,"Raw, fresh, hybrid",4.5
+10,3,Tomato,36,15,0,25-12-2019,"Raw, fresh, organic",5
+1,4,Potato,20,20,0,30-12-2020,"Hybrid,fresh, large",4.5
+1,5,Onion,50,25,0,11-01-2020,"tender,thinner,paper skin, strong aroma",4.5
+2,6,Onion,45,30,5,10-01-2020,thicker skin,3
+3,7,Rice,50,200,0,10-02-2021,"Unpolished,Organic",5
+4,8,Rice,52,200,0,10-03-2022,Polished,4.5
+3,9,Urad,200,100,0,10-03-2020,"Unpolished,Organic",5
+4,10,Urad,195,100,0,10-03-2020,Polished,4.5
+5,11,Wheat,75,120,0,10-03-2020,"Heavy Weight,Medium size grains, Distinct Aroma, High sweetness",4.5
+7,12,Wheat,70,150,0,10-04-2020,"Light Weight,small size grains",3
+8,13,Potato,15,25,0,25-12-2019,"organic,fresh, small",5
+6,14,GroundNut,62,50,0,10-03-2020,"Organic,Unpolished",5
+9,15,Cabbage,35,25,0,17-12-2019,"Fresh,Large",5
+10,16,Cabbage,40,25,0,11-12-2019,"Fresh,Small",4
+5,17,GroundNut,60,50,0,10-03-2020,Polished,4

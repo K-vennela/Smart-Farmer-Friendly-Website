@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Bokeh</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="icon" href="images/play.png" type="image/png" sizes="16x16">
+	</head>
+	<body>
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="#">Bokeh</a></h1>
+			<a href="#menu">Menu</a>
+		</header>
+		<!-- Nav -->
+		<nav id="menu">
+			<ul class="links">
+				<li><a href="index.html">Logout</a></li>
+				<li><a href="dash.html">Dashboard</a></li>
+			</ul>
+		</nav>
+		<section class="wrapper style1">
+			<div class="inner">
+				
+				<div class="12u$" id="textbox">
+					<div>
+						<h4>Search Product<h4>
+						
+							<input type="text" id="searchquery" name="query" value="" placeholder="Enter text"></input>
+					</div>
+				</div>
+				
+				
+				<div class="12u$" >
+					<div>
+						<center><button style="width:100px" id="submit">Submit</button></center>
+					</div>
+				</div>
+				
+				<br>
+				<h2>Search results</h2>
+				<br/>
+				<section id="list">
+				</section>
+			</div>
+		
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script type="text/javascript">
+			var style1="background-color:#062038;margin:1%;overflow:auto";
+			var style2="background-color:#041321;margin:1%;overflow:auto";
+			var styl=style1;	
+			var inputtype;
+			var inputsearchstring;
+			var filter=0;
+		
+		function getLocation() {
+		  if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+		  } else {
+			x.innerHTML = "Geolocation is not supported by this browser.";
+		  }
+		}
+
+		function showPosition(position) {
+		  latitude=position.coords.latitude;
+		  longitude=position.coords.longitude;
+		}
+
+        document.getElementById("submit").onclick = function() { 
+  			
+  			inputsearchstring = document.getElementById("searchquery").value;
+            var data = new Object();
+			getLocation();
+            var list=document.getElementById("list");
+				data['product_name'] = inputsearchstring;
+				data['latitude'] = latitude;
+				data['longitude'] = longitude;
+				data1 = JSON.stringify(data);
+				$.ajax({
+					type: 'POST',
+					url: "{{url_for('search')}}",
+					data: data1 ,
+					contentType: "application/json",
+					success:function(res) {
+
+						if(res.length==0){
+							list.innerHTML="";
+							var h5 = document.createElement("h5");
+							h5.appendChild(document.createTextNode("No Results"));
+							document.getElementById("list").appendChild(h5);
+						}
+						else{
+							list.innerHTML="";
+							for(var i=0;i<res.length;i++){
+									var sec = document.createElement("section");
+									sec.setAttribute("style",styl);
+									if(styl==style1){ styl=style2 }else {styl=style1};
+									var image=document.createElement("img");
+									image.setAttribute("src","http://localhost:3000/uploads/"+res[i][0]+"/thumbnail.jpg");
+									image.setAttribute("width","150");
+									image.setAttribute("height","100");
+									image.setAttribute("style","float:left;margin:2%;");
+									sec.appendChild(image);
+									sec.appendChild(document.createElement("br"));
+									sec.appendChild(document.createElement("h1").appendChild(document.createTextNode(res[i][1])));
+									sec.appendChild(document.createElement("br"));
+									sec.appendChild(document.createElement("br"));
+									var button=document.createElement("button");
+									button.setAttribute("class","btn");button.setAttribute("value",res[i][0]);
+									button.setAttribute("name","bt");button.setAttribute("style","background-color:grey;");
+									button.setAttribute("data-username",res[i][0]);
+									button.appendChild(document.createTextNode("View"));
+									sec.appendChild(button);
+									list.appendChild(sec);
+								}
+							}		
+  
+        			}
+        		});
+        	}
+
+  			$(document).on('click', '.btn', function() {
+			sessionStorage.setItem("video_id",$(this).data('username'));
+			sessionStorage.setItem("quality",'');
+			window.location = "display.html";
+			});
+			
+
+		</script>
+	</body>
+</html>
