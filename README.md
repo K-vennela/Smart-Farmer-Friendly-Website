@@ -9,10 +9,10 @@ The Frontend and the Backend are built independent of each other. So, both are e
 
 Farmer DashBoard is built to provide insights to the Farmer. 
 It provides various functionalities like 
--Searching for a product to see how much other farmers are making for the same.
--Viewing what practices are employed by farmers with similar land to earn more money.
--Viewing a chart to see how much of each batch by the farmer was sold and how much was left behind.
--The system can be extended to add more functionalities by just creating new api calls.
+- Searching for a product to see how much other farmers are making for the same.
+- Viewing what practices are employed by farmers with similar land to earn more money.
+- Viewing a chart to see how much of each batch by the farmer was sold and how much was left behind.
+- The system can be extended to add more functionalities by just creating new api calls.
 
 The Price Prediction system is built using Seasonal ARIMAX.
 
